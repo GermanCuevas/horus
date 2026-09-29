@@ -1,7 +1,7 @@
-# Horus Architecture Rules: Local Storage & Offline-First
+# Reglas de Arquitectura de Horus: Almacenamiento Local y Prioridad Offline
 
-## Data Storage Guidelines
-- **Zero External Server DB**: All user data, manuscripts, chapters, and character sheets reside strictly on the user's client device.
-- **IndexedDB via Dexie.js**: Use Dexie.js for lightning-fast auto-saving, reactive querying, and offline storage of all manuscript items.
-- **File System Access API**: Support direct reading and writing of `.horus` project bundles, Markdown files (`.md`), and exports (EPUB, PDF, DOCX) directly to the user's local filesystem.
-- **Data Safety & Auto-Save**: Implement continuous background auto-saving with debounce (e.g. 500ms after last keystroke) to guarantee zero data loss.
+## Directrices de Almacenamiento de Datos
+- **Cero Base de Datos en Servidor Externo**: Todos los datos de usuario, manuscritos, capítulos y fichas de personajes residen estrictamente en el dispositivo cliente del usuario.
+- **IndexedDB vía Dexie.js**: Utilizar Dexie.js para guardado automático ultra rápido, consultas reactivas y almacenamiento offline de todos los elementos del manuscrito.
+- **API de Acceso al Sistema de Archivos (File System Access API)**: Soporte para lectura y escritura directa de paquetes de proyecto `.horus`, archivos Markdown (`.md`) y exportaciones (EPUB, PDF, DOCX) directamente en el sistema de archivos local del usuario.
+- **Seguridad de Datos y Guardado Automático**: Implementar guardado automático continuo en segundo plano con temporizador (debounce, ej. 500ms tras la última pulsación de tecla) para garantizar cero pérdida de datos.

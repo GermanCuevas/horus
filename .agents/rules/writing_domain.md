@@ -1,11 +1,11 @@
-# Horus Domain Rules: Professional Writing & UX
+# Reglas de Dominio de Horus: Escritura Profesional y Experiencia de Usuario (UX)
 
-## Core Mission
-Horus is a professional distraction-free writing studio for authors, novelists, and storytellers.
+## Misión Principal
+Horus es un estudio de escritura profesional libre de distracciones diseñado para autores, novelistas y dramaturgos.
 
-## UX & Layout Principles
-- **Paper Sheet Emulation**: The main writing canvas must feel like a high-quality physical sheet of paper with customizable margins and responsive horizontal position ("correr la hoja").
-- **Typewriter Mode**: Option to lock the active editing line to the vertical center of the screen during writing.
-- **Zen Focus Mode**: Toggle to hide all navigation sidebars, toolbars, and status indicators, leaving only the author and their words.
-- **Literary Typography**: Use rich, readable fonts curated for long-form writing (Lora, Merriweather, Georgia, Inter, JetBrains Mono).
-- **Manuscript Structure**: Support hierarchical organization (Works -> Modules: Prologue, Chapters, Scenes, Epilogue) and auxiliary reference material (Characters, Worldbuilding, Notes).
+## Principios de UX y Maquetación
+- **Emulación de Hoja de Papel**: El lienzo principal de escritura debe sentirse como una hoja de papel física de alta calidad con márgenes personalizables y posición horizontal responsiva ("correr la hoja").
+- **Modo Máquina de Escribir (Typewriter Mode)**: Opción para fijar la línea activa de edición en el centro vertical de la pantalla durante la escritura.
+- **Modo Enfoque Zen (Zen Focus Mode)**: Conmutador para ocultar todas las barras laterales de navegación, barras de herramientas e indicadores de estado, dejando únicamente al autor con sus palabras.
+- **Tipografía Literaria**: Uso de fuentes legibles y enriquecidas curadas para la escritura de larga duración (Lora, Merriweather, Georgia, Inter, JetBrains Mono).
+- **Estructura del Manuscrito**: Soporte para organización jerárquica (Obras -> Módulos: Prólogo, Capítulos, Escenas, Epílogo) y material de referencia auxiliar (Personajes, Construcción de mundo/Worldbuilding, Notas).

@@ -1,9 +1,115 @@
 @import "tailwindcss";
 
 @layer base {
-  body {
-    font-family: 'Inter', sans-serif;
+  :root {
+    /* 1. MODELO DE PROFUNDIDAD Y CAPAS (DARK CRAFT MODE) */
+    --bg-sidebar: #121418;        /* Capa 0: Navegación / Sidebar más oscuro y firme */
+    --bg-app: #181a20;            /* Capa 1: Mesa de Trabajo / Fondo del escritorio */
+    --bg-surface: #1c1f26;        /* Superficies de controles y contenedores */
+    --bg-surface-hover: rgba(255, 255, 255, 0.06); /* Hover suave */
+    --bg-surface-active: rgba(255, 255, 255, 0.12);/* Píldora de elemento seleccionado */
+    --bg-paper: #20242e;          /* Capa 2: Lienzo de la hoja de escritura */
+    
+    /* Textura de la Hoja de Papel (Rayado de cuaderno sutil) */
+    --paper-line-color: rgba(255, 255, 255, 0.04);
+    --paper-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.6), 0 10px 15px -6px rgba(0, 0, 0, 0.4);
+
+    /* 2. TIPOGRAFÍA MINIMALISTA & ATEMPORAL (DARK) */
+    --text-primary: #f1f5f9;      /* Blanco marfil suave (alta legibilidad, baja fatiga) */
+    --text-secondary: #94a3b8;    /* Gris pizarra medio para metadatos */
+    --text-muted: #64748b;        /* Gris tenue para contadores/placeholders */
+    --text-active: #ffffff;       /* Blanco puro para elementos seleccionados */
+    --border: #262a34;            /* Bordes sutiles de separadores */
+
+    /* ESCALA SEMÁNTICA DE FUENTES & INTERLINEADO */
+    /* 1. UI / Interfaz */
+    --fs-ui-s: 0.75rem;       /* 12px - tags específicos, aclaraciones, metadatos */
+    --lh-ui-s: 1.33;
+    --fs-ui-m: 0.875rem;      /* 14px - texto estándar de interfaz, ítems de la barra lateral */
+    --lh-ui-m: 1.43;
+    --fs-ui-l: 1rem;          /* 16px - navegación principal, títulos de sección en UI, botones clave */
+    --lh-ui-l: 1.5;
+
+    /* 2. Escritura / Lienzo del Manuscrito */
+    --fs-writing-s: 1.0625rem; /* 17px - lectura compacta */
+    --lh-writing-s: 1.75;
+    --fs-writing-m: 1.1875rem; /* 19px - lectura estándar (por defecto) */
+    --lh-writing-m: 1.8;
+    --fs-writing-l: 1.375rem;  /* 22px - lectura amplia */
+    --lh-writing-l: 1.85;
+
+    /* 3. Display / Titulares Grandes */
+    --fs-display-m: 1.75rem;  /* 28px - títulos de modales o secciones destacadas */
+    --lh-display-m: 1.25;
+    --fs-display-l: 2.25rem;  /* 36px - nombre de la App / Titulares del Home */
+    --lh-display-l: 1.2;
   }
+
+  [data-theme="light"] {
+    /* 1. MODELO DE PROFUNDIDAD Y CAPAS (LIGHT CRAFT MODE) */
+    --bg-sidebar: #eaedee;        /* Capa 0: Sidebar gris suave atenuado */
+    --bg-app: #f2f4f5;            /* Capa 1: Mesa de trabajo gris fresco */
+    --bg-surface: #e5e8ea;        /* Superficies de controles */
+    --bg-surface-hover: rgba(0, 0, 0, 0.05);
+    --bg-surface-active: rgba(0, 0, 0, 0.08); /* Píldora activa limpia */
+    --bg-paper: #ffffff;          /* Capa 2: Lienzo de la hoja de escritura blanco nítido/hueso */
+    
+    /* Textura de la Hoja de Papel (Rayado azul cuaderno sutil) */
+    --paper-line-color: rgba(59, 130, 246, 0.06);
+    --paper-shadow: 0 15px 25px -3px rgba(0, 0, 0, 0.08), 0 6px 10px -4px rgba(0, 0, 0, 0.04);
+
+    /* 2. TIPOGRAFÍA MINIMALISTA & ATEMPORAL (LIGHT) */
+    --text-primary: #0f172a;      /* Tinta carbón profunda */
+    --text-secondary: #475569;    /* Gris tinta medio */
+    --text-muted: #94a3b8;        /* Gris tenue */
+    --text-active: #0f172a;       /* Tinta activa */
+    --border: #dce1e6;            /* Bordes sutiles */
+  }
+
+  body {
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: var(--fs-ui-m);
+    line-height: var(--lh-ui-m);
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+}
+
+/* Clases utilitarias de tamaño de fuente semánticas */
+.text-ui-s {
+  font-size: var(--fs-ui-s);
+  line-height: var(--lh-ui-s);
+}
+.text-ui-m {
+  font-size: var(--fs-ui-m);
+  line-height: var(--lh-ui-m);
+}
+.text-ui-l {
+  font-size: var(--fs-ui-l);
+  line-height: var(--lh-ui-l);
+}
+
+.text-writing-s {
+  font-size: var(--fs-writing-s);
+  line-height: var(--lh-writing-s);
+}
+.text-writing-m {
+  font-size: var(--fs-writing-m);
+  line-height: var(--lh-writing-m);
+}
+.text-writing-l {
+  font-size: var(--fs-writing-l);
+  line-height: var(--lh-writing-l);
+}
+
+.text-display-m {
+  font-size: var(--fs-display-m);
+  line-height: var(--lh-display-m);
+}
+.text-display-l {
+  font-size: var(--fs-display-l);
+  line-height: var(--lh-display-l);
 }
 
 /* Tipografía literaria personalizada */
@@ -27,6 +133,12 @@
   font-family: 'JetBrains Mono', monospace;
 }
 
+/* Textura de Hoja Rayada (Ruled Paper) */
+.paper-ruled {
+  background-image: linear-gradient(var(--paper-line-color) 1px, transparent 1px);
+  background-size: 100% 2.25rem;
+}
+
 /* Estilos de la Hoja de Papel e Interfaz TipTap */
 .ProseMirror {
   outline: none;
@@ -41,7 +153,7 @@
 .ProseMirror p.is-editor-empty:first-child::before {
   content: attr(data-placeholder);
   float: left;
-  color: #94a3b8;
+  color: var(--text-muted);
   pointer-events: none;
   height: 0;
   font-style: italic;
@@ -58,10 +170,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.2);
+  background: var(--border);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.4);
+  background: var(--text-muted);
 }

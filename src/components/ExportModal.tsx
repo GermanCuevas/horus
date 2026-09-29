@@ -58,54 +58,54 @@ export const ExportModal: React.FC<ExportModalProps> = ({ isOpen, onClose, activ
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 text-slate-200 shadow-2xl relative">
+    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-2xl max-w-md w-full p-6 text-[var(--text-primary)] shadow-2xl relative">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-1 rounded-full text-slate-400 hover:text-slate-100 hover:bg-slate-800 transition"
+          className="absolute top-4 right-4 p-1 rounded-full text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-hover)] transition"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <h3 className="text-xl font-serif font-semibold text-slate-100 mb-2 flex items-center gap-2">
-          <Download className="w-5 h-5 text-amber-400" />
+        <h3 className="text-ui-l font-serif font-semibold text-[var(--text-primary)] mb-2 flex items-center gap-2">
+          <Download className="w-5 h-5 text-[var(--text-primary)]" />
           Exportar Obra Localmente
         </h3>
-        <p className="text-xs text-slate-400 mb-6">
+        <p className="text-ui-s text-[var(--text-secondary)] mb-6">
           Guarda tus manuscritos directamente en tu equipo sin intermediarios ni bases de datos en la nube.
         </p>
 
         <div className="space-y-3">
           <button
             onClick={handleExportHorusJson}
-            className="w-full flex items-center justify-between p-4 rounded-xl bg-slate-800/80 border border-slate-700/60 hover:bg-slate-800 hover:border-amber-500/50 transition group cursor-pointer"
+            className="w-full flex items-center justify-between p-4 rounded-xl bg-[var(--bg-app)] border border-[var(--border)] hover:border-[var(--text-primary)]/50 transition group cursor-pointer"
           >
             <div className="flex items-center gap-3 text-left">
-              <div className="p-2.5 rounded-lg bg-amber-500/10 text-amber-400 group-hover:bg-amber-500/20">
+              <div className="p-2.5 rounded-lg bg-[var(--bg-surface-active)] text-[var(--text-primary)]">
                 <FileCode className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-sm font-medium text-slate-100">Paquete de Proyecto (.horus / JSON)</h4>
-                <p className="text-xs text-slate-400">Guarda todo el manuscrito, fichas y notas para reimportar.</p>
+                <h4 className="text-ui-m font-medium text-[var(--text-primary)]">Paquete de Proyecto (.horus / JSON)</h4>
+                <p className="text-ui-s text-[var(--text-secondary)]">Guarda todo el manuscrito, fichas y notas para reimportar.</p>
               </div>
             </div>
-            <Check className="w-4 h-4 text-slate-500 group-hover:text-amber-400" />
+            <Check className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[var(--text-primary)]" />
           </button>
 
           <button
             onClick={handleExportMarkdown}
-            className="w-full flex items-center justify-between p-4 rounded-xl bg-slate-800/80 border border-slate-700/60 hover:bg-slate-800 hover:border-amber-500/50 transition group cursor-pointer"
+            className="w-full flex items-center justify-between p-4 rounded-xl bg-[var(--bg-app)] border border-[var(--border)] hover:border-[var(--text-primary)]/50 transition group cursor-pointer"
           >
             <div className="flex items-center gap-3 text-left">
-              <div className="p-2.5 rounded-lg bg-sky-500/10 text-sky-400 group-hover:bg-sky-500/20">
+              <div className="p-2.5 rounded-lg bg-[var(--bg-surface-active)] text-[var(--text-primary)]">
                 <FileText className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-sm font-medium text-slate-100">Manuscrito Unificado (.md)</h4>
-                <p className="text-xs text-slate-400">Formato Markdown limpio listo para publicar o editar.</p>
+                <h4 className="text-ui-m font-medium text-[var(--text-primary)]">Manuscrito Unificado (.md)</h4>
+                <p className="text-ui-s text-[var(--text-secondary)]">Formato Markdown limpio listo para publicar o editar.</p>
               </div>
             </div>
-            <Check className="w-4 h-4 text-slate-500 group-hover:text-sky-400" />
+            <Check className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[var(--text-primary)]" />
           </button>
         </div>
       </div>

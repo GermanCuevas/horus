@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 export type FontOption = 'lora' | 'merriweather' | 'playfair' | 'inter' | 'mono-code';
-export type ThemeOption = 'dark' | 'light' | 'sepia';
+export type ThemeOption = 'dark' | 'light';
 
 interface WritingStore {
   // Active Project & Document
@@ -14,7 +14,7 @@ interface WritingStore {
   fontFamily: FontOption;
   fontSize: number; // in px
   lineHeight: number; // e.g. 1.8
-  paperWidth: number; // max-w in px (e.g. 720)
+  paperWidth: number; // max-w in px (e.g. 760)
   paperMarginX: number; // Horizontal offset in px ("correr la hoja")
   theme: ThemeOption;
   zenMode: boolean;
