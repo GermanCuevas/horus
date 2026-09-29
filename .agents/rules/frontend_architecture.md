@@ -1,13 +1,13 @@
-# Horus Tech Stack & Frontend Guidelines
+# Arquitectura Frontend y Guías Técnicas de Horus
 
-## Technology Stack
+## Stack Tecnológico
 - **Framework**: React 19 + Vite + TypeScript.
-- **Styling**: Tailwind CSS + Custom HSL variables for dark/light/sepia themes.
-- **Editor**: TipTap (ProseMirror) with custom extensions.
-- **State Management**: Zustand for UI state (focus mode, sidebar visibility, theme, typography settings) and Dexie hooks for reactive manuscript data.
-- **Iconography**: Lucide React.
+- **Estilos**: Tailwind CSS + Variables HSL personalizadas para temas oscuro/claro/sepia.
+- **Editor**: TipTap (ProseMirror) con extensiones personalizadas.
+- **Gestión de Estado**: Zustand para el estado de la UI (modo enfoque, visibilidad de la barra lateral, tema, ajustes tipográficos) y hooks de Dexie para datos reactivos del manuscrito.
+- **Iconografía**: Lucide React.
 
-## Quality Standards
-- No placeholder UI elements; provide fully interactive components.
-- Responsive, clean glassmorphism / dark slate aesthetic.
-- Keyboard shortcuts for common actions (Ctrl+S, Ctrl+Shift+F for Zen mode, Ctrl+B/I).
+## Estándares de Calidad
+- Sin elementos de UI temporales o marcadores de posición; proporcionar componentes totalmente interactivos.
+- Estética glassmorphism / pizarra oscura limpia y responsiva.
+- Atajos de teclado para acciones comunes (Ctrl+S, Ctrl+Shift+F para modo Zen, Ctrl+B/I).

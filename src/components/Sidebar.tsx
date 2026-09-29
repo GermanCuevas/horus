@@ -23,7 +23,7 @@ export const Sidebar: React.FC<SidebarProps> = () => {
   const [showNewProjectInput, setShowNewProjectInput] = useState(false);
   const [activeTab, setActiveTab] = useState<'manuscript' | 'worldbuilding'>('manuscript');
 
-  // Query projects and items reactively from Dexie with explicit return types
+  // Query projects and items reactively from Dexie
   const projects = useLiveQuery<Project[]>(() => db.projects.toArray(), []) || [];
   
   const items = useLiveQuery<ManuscriptItem[]>(
@@ -128,17 +128,17 @@ export const Sidebar: React.FC<SidebarProps> = () => {
   const totalWords = items.reduce((acc, i) => acc + (i.wordCount || 0), 0);
 
   return (
-    <aside className="w-72 border-r border-slate-800 bg-slate-950 flex flex-col h-[calc(100vh-3.5rem)] text-slate-300 select-none">
+    <aside className="w-72 border-r border-[var(--border)] bg-[var(--bg-sidebar)] flex flex-col h-[calc(100vh-3.5rem)] text-[var(--text-primary)] select-none transition-colors duration-200">
       
       {/* Project Selector Header */}
-      <div className="p-4 border-b border-slate-800/80 bg-slate-900/40">
+      <div className="p-4 border-b border-[var(--border)] bg-[var(--bg-app)]/40">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+          <span className="text-ui-s font-semibold text-[var(--text-secondary)] uppercase tracking-wider">
             Obra Activa
           </span>
           <button
             onClick={() => setShowNewProjectInput(!showNewProjectInput)}
-            className="p-1 rounded text-amber-400 hover:bg-slate-800 transition"
+            className="p-1 rounded text-[var(--text-primary)] hover:bg-[var(--bg-surface-hover)] transition"
             title="Crear Nueva Obra"
           >
             <Plus className="w-4 h-4" />
@@ -152,12 +152,12 @@ export const Sidebar: React.FC<SidebarProps> = () => {
               placeholder="Título de la obra..."
               value={newProjectTitle}
               onChange={(e) => setNewProjectTitle(e.target.value)}
-              className="flex-1 bg-slate-900 border border-slate-700 rounded px-2 py-1 text-xs text-slate-100 focus:outline-none focus:border-amber-500"
+              className="flex-1 bg-[var(--bg-surface)] border border-[var(--border)] rounded px-2 py-1 text-ui-s text-[var(--text-primary)] focus:outline-none focus:border-[var(--text-primary)]"
               autoFocus
             />
             <button
               type="submit"
-              className="px-2 py-1 bg-amber-500 hover:bg-amber-600 text-slate-950 rounded text-xs font-medium"
+              className="px-2 py-1 bg-[var(--bg-surface-active)] hover:bg-[var(--bg-surface-hover)] text-[var(--text-primary)] rounded text-ui-s font-medium border border-[var(--border)]"
             >
               Crear
             </button>
@@ -166,7 +166,7 @@ export const Sidebar: React.FC<SidebarProps> = () => {
           <select
             value={activeProjectId || ''}
             onChange={(e) => setActiveProjectId(Number(e.target.value))}
-            className="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-amber-300 font-serif focus:outline-none cursor-pointer"
+            className="w-full bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg px-3 py-2 text-ui-m text-[var(--text-primary)] font-serif focus:outline-none cursor-pointer"
           >
             {projects.length === 0 && <option value="">No hay obras aún</option>}
             {projects.map((p) => (
@@ -179,21 +179,21 @@ export const Sidebar: React.FC<SidebarProps> = () => {
 
         {/* Total Project Stats */}
         {activeProject && (
-          <div className="mt-3 flex items-center justify-between text-[11px] text-slate-400 bg-slate-900/80 rounded-md px-2.5 py-1.5 border border-slate-800">
+          <div className="mt-3 flex items-center justify-between text-ui-s text-[var(--text-secondary)] bg-[var(--bg-surface)] rounded-md px-2.5 py-1.5 border border-[var(--border)]">
             <span>Total Obra:</span>
-            <span className="font-mono text-amber-400 font-medium">{totalWords.toLocaleString()} palabras</span>
+            <span className="font-mono text-[var(--text-primary)] font-medium">{totalWords.toLocaleString()} palabras</span>
           </div>
         )}
       </div>
 
       {/* Tabs: Manuscrito vs Worldbuilding */}
-      <div className="flex border-b border-slate-800 bg-slate-900/30 text-xs">
+      <div className="flex border-b border-[var(--border)] bg-[var(--bg-app)]/20 text-ui-s">
         <button
           onClick={() => setActiveTab('manuscript')}
           className={`flex-1 py-2.5 flex items-center justify-center gap-1.5 font-medium transition border-b-2 ${
             activeTab === 'manuscript'
-              ? 'border-amber-500 text-amber-400 bg-slate-900/50'
-              : 'border-transparent text-slate-400 hover:text-slate-200'
+              ? 'border-[var(--text-primary)] text-[var(--text-primary)] bg-[var(--bg-surface)]'
+              : 'border-transparent text-[var(--text-muted)] hover:text-[var(--text-primary)]'
           }`}
         >
           <BookOpen className="w-3.5 h-3.5" />
@@ -203,8 +203,8 @@ export const Sidebar: React.FC<SidebarProps> = () => {
           onClick={() => setActiveTab('worldbuilding')}
           className={`flex-1 py-2.5 flex items-center justify-center gap-1.5 font-medium transition border-b-2 ${
             activeTab === 'worldbuilding'
-              ? 'border-amber-500 text-amber-400 bg-slate-900/50'
-              : 'border-transparent text-slate-400 hover:text-slate-200'
+              ? 'border-[var(--text-primary)] text-[var(--text-primary)] bg-[var(--bg-surface)]'
+              : 'border-transparent text-[var(--text-muted)] hover:text-[var(--text-primary)]'
           }`}
         >
           <Users className="w-3.5 h-3.5" />
@@ -216,39 +216,39 @@ export const Sidebar: React.FC<SidebarProps> = () => {
       <div className="flex-1 overflow-y-auto p-3 space-y-1">
         {activeTab === 'manuscript' && (
           <>
-            <div className="flex items-center justify-between text-xs text-slate-400 px-2 py-1">
+            <div className="flex items-center justify-between text-ui-s text-[var(--text-secondary)] px-2 py-1">
               <span className="font-medium">Estructura del Libro</span>
               <button
                 onClick={() => handleCreateItem('chapter')}
-                className="flex items-center gap-1 text-[11px] text-amber-400 hover:text-amber-300"
+                className="flex items-center gap-1 text-ui-s text-[var(--text-primary)] hover:underline"
               >
                 <Plus className="w-3 h-3" /> Capítulo
               </button>
             </div>
 
             {manuscriptItems.length === 0 ? (
-              <p className="text-xs text-slate-500 italic p-3 text-center">Sin capítulos aún.</p>
+              <p className="text-ui-s text-[var(--text-muted)] italic p-3 text-center">Sin capítulos aún.</p>
             ) : (
               manuscriptItems.map((item) => (
                 <div
                   key={item.id}
                   onClick={() => setActiveItemId(item.id!)}
-                  className={`group flex items-center justify-between px-3 py-2 rounded-lg text-xs cursor-pointer transition ${
+                  className={`group flex items-center justify-between px-3 py-2 rounded-lg text-ui-m cursor-pointer transition ${
                     activeItemId === item.id
-                      ? 'bg-amber-500/15 text-amber-300 border border-amber-500/30 font-medium'
-                      : 'hover:bg-slate-900 text-slate-300'
+                      ? 'bg-[var(--bg-surface-active)] text-[var(--text-active)] border border-[var(--border)] font-medium shadow-xs'
+                      : 'hover:bg-[var(--bg-surface-hover)] text-[var(--text-primary)]'
                   }`}
                 >
                   <div className="flex items-center gap-2 truncate">
-                    <FileText className="w-3.5 h-3.5 text-amber-400/80 shrink-0" />
+                    <FileText className="w-3.5 h-3.5 text-[var(--text-secondary)] shrink-0" />
                     <span className="truncate">{item.title}</span>
                   </div>
 
-                  <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition">
-                    <span className="font-mono text-[10px] text-slate-500">{item.wordCount || 0}w</span>
+                  <div className="flex items-center gap-2 opacity-80 group-hover:opacity-100 transition">
+                    <span className="font-mono text-ui-s text-[var(--text-muted)]">{item.wordCount || 0}w</span>
                     <button
                       onClick={(e) => handleDeleteItem(item.id!, e)}
-                      className="text-slate-500 hover:text-rose-400"
+                      className="text-[var(--text-muted)] hover:text-rose-400"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
@@ -261,18 +261,18 @@ export const Sidebar: React.FC<SidebarProps> = () => {
 
         {activeTab === 'worldbuilding' && (
           <>
-            <div className="flex items-center justify-between text-xs text-slate-400 px-2 py-1">
+            <div className="flex items-center justify-between text-ui-s text-[var(--text-secondary)] px-2 py-1">
               <span className="font-medium">Personajes y Notas</span>
               <div className="flex gap-2">
                 <button
                   onClick={() => handleCreateItem('character')}
-                  className="text-[11px] text-amber-400 hover:text-amber-300"
+                  className="text-ui-s text-[var(--text-primary)] hover:underline"
                 >
                   + Personaje
                 </button>
                 <button
                   onClick={() => handleCreateItem('note')}
-                  className="text-[11px] text-slate-400 hover:text-slate-200"
+                  className="text-ui-s text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                 >
                   + Nota
                 </button>
@@ -280,16 +280,16 @@ export const Sidebar: React.FC<SidebarProps> = () => {
             </div>
 
             {worldbuildingItems.length === 0 ? (
-              <p className="text-xs text-slate-500 italic p-3 text-center">No hay personajes ni notas aún.</p>
+              <p className="text-ui-s text-[var(--text-muted)] italic p-3 text-center">No hay personajes ni notas aún.</p>
             ) : (
               worldbuildingItems.map((item) => (
                 <div
                   key={item.id}
                   onClick={() => setActiveItemId(item.id!)}
-                  className={`group flex items-center justify-between px-3 py-2 rounded-lg text-xs cursor-pointer transition ${
+                  className={`group flex items-center justify-between px-3 py-2 rounded-lg text-ui-m cursor-pointer transition ${
                     activeItemId === item.id
-                      ? 'bg-amber-500/15 text-amber-300 border border-amber-500/30 font-medium'
-                      : 'hover:bg-slate-900 text-slate-300'
+                      ? 'bg-[var(--bg-surface-active)] text-[var(--text-active)] border border-[var(--border)] font-medium shadow-xs'
+                      : 'hover:bg-[var(--bg-surface-hover)] text-[var(--text-primary)]'
                   }`}
                 >
                   <div className="flex items-center gap-2 truncate">
@@ -303,7 +303,7 @@ export const Sidebar: React.FC<SidebarProps> = () => {
 
                   <button
                     onClick={(e) => handleDeleteItem(item.id!, e)}
-                    className="text-slate-500 hover:text-rose-400 opacity-0 group-hover:opacity-100 transition"
+                    className="text-[var(--text-muted)] hover:text-rose-400 opacity-0 group-hover:opacity-100 transition"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>

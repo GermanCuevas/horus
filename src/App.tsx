@@ -8,8 +8,13 @@ import { Editor } from './components/Editor';
 import { ExportModal } from './components/ExportModal';
 
 export function App() {
-  const { activeProjectId, activeItemId, setActiveProjectId, setActiveItemId } = useWritingStore();
+  const { activeProjectId, activeItemId, theme, setActiveProjectId, setActiveItemId } = useWritingStore();
   const [exportOpen, setExportOpen] = useState(false);
+
+  // Sync theme with document root attribute [data-theme]
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   // Seed default demo project on first application launch
   useEffect(() => {
@@ -80,7 +85,7 @@ export function App() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-amber-500/30 selection:text-amber-200">
+    <div className="min-h-screen bg-[var(--bg-app)] text-[var(--text-primary)] flex flex-col font-sans selection:bg-[var(--accent-soft)] selection:text-[var(--accent)] transition-colors duration-250">
       
       {/* Top Controls Toolbar */}
       <Toolbar onOpenExport={() => setExportOpen(true)} />

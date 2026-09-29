@@ -20,7 +20,6 @@ export const Editor: React.FC<EditorProps> = ({ item }) => {
     lineHeight,
     paperWidth,
     paperMarginX,
-    theme,
     zenMode,
     typewriterMode,
     toggleZenMode
@@ -89,22 +88,15 @@ export const Editor: React.FC<EditorProps> = ({ item }) => {
 
   if (!item) {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center text-slate-500 bg-slate-950 p-8 text-center">
-        <BookOpen className="w-16 h-16 mb-4 stroke-1 text-amber-500/40" />
-        <h2 className="text-xl font-serif text-slate-300 mb-2">Ningún escrito seleccionado</h2>
-        <p className="max-w-md text-sm text-slate-500">
+      <div className="flex-1 flex flex-col items-center justify-center text-[var(--text-muted)] bg-[var(--bg-app)] p-8 text-center">
+        <BookOpen className="w-16 h-16 mb-4 stroke-1 text-[var(--text-secondary)]/40" />
+        <h2 className="text-display-m font-serif text-[var(--text-primary)] mb-2">Ningún escrito seleccionado</h2>
+        <p className="max-w-md text-ui-m text-[var(--text-secondary)]">
           Selecciona o crea un capítulo, prólogo o escena en la barra lateral para comenzar a escribir la obra de Horus.
         </p>
       </div>
     );
   }
-
-  // Theme styles for paper sheet
-  const themePaperClasses = {
-    dark: 'bg-slate-900 border-slate-800 text-slate-100 shadow-2xl shadow-black/80',
-    light: 'bg-stone-50 border-stone-200 text-stone-900 shadow-xl shadow-stone-300/50',
-    sepia: 'bg-[#f4ecd8] border-[#e2d5b7] text-[#3d3326] shadow-xl shadow-amber-900/10',
-  }[theme];
 
   const fontClass = {
     lora: 'font-lora',
@@ -119,13 +111,13 @@ export const Editor: React.FC<EditorProps> = ({ item }) => {
   const readingTimeMinutes = Math.max(1, Math.ceil(wordCount / 200));
 
   return (
-    <div className={`flex-1 flex flex-col min-h-screen transition-colors duration-300 ${zenMode ? 'bg-slate-950' : 'bg-slate-950/90'}`}>
+    <div className={`flex-1 flex flex-col min-h-screen transition-colors duration-250 bg-[var(--bg-app)]`}>
       
       {/* Zen Toggle Floating Button */}
       <button
         onClick={toggleZenMode}
         title={zenMode ? 'Salir del Modo Enfoque Zen (Esc)' : 'Activar Modo Enfoque Zen (Full Screen)'}
-        className="fixed top-4 right-4 z-40 p-2.5 rounded-full bg-slate-900/80 backdrop-blur border border-slate-700/60 text-slate-400 hover:text-amber-400 hover:bg-slate-800 transition"
+        className="fixed top-4 right-4 z-40 p-2.5 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface-hover)] transition shadow-lg"
       >
         {zenMode ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
       </button>
@@ -133,17 +125,18 @@ export const Editor: React.FC<EditorProps> = ({ item }) => {
       {/* Main Canvas Scroll Area */}
       <div className="flex-1 overflow-y-auto px-4 py-12 flex justify-center">
         
-        {/* Paper Sheet Component with Margins & Offset */}
+        {/* Paper Sheet Component with Margins, Ruled Lines & Offset */}
         <div
           ref={editorRef}
           style={{
             maxWidth: `${paperWidth}px`,
             transform: `translateX(${paperMarginX}px)`,
+            boxShadow: 'var(--paper-shadow)',
           }}
-          className={`w-full min-h-[85vh] rounded-xl border p-12 transition-all duration-200 ${themePaperClasses} ${fontClass}`}
+          className={`w-full min-h-[85vh] rounded-xl border border-[var(--border)] bg-[var(--bg-paper)] paper-ruled text-[var(--text-primary)] p-12 transition-all duration-200 ${fontClass}`}
         >
           {/* Header Title inside Paper */}
-          <h1 className="text-3xl font-serif font-semibold border-b pb-4 mb-8 border-current/15 tracking-tight">
+          <h1 className="text-display-m font-serif font-semibold border-b pb-4 mb-8 border-current/15 tracking-tight">
             {item.title}
           </h1>
 
@@ -156,22 +149,22 @@ export const Editor: React.FC<EditorProps> = ({ item }) => {
 
       {/* Sub-bar Statistics */}
       {!zenMode && (
-        <footer className="h-10 border-t border-slate-800/80 bg-slate-950/80 backdrop-blur px-6 flex items-center justify-between text-xs text-slate-400 select-none">
+        <footer className="h-10 border-t border-[var(--border)] bg-[var(--bg-surface)] px-6 flex items-center justify-between text-ui-s text-[var(--text-secondary)] select-none transition-colors duration-200">
           <div className="flex items-center gap-6">
             <span>
-              <strong className="text-amber-400 font-mono">{wordCount}</strong> palabras
+              <strong className="text-[var(--text-primary)] font-mono">{wordCount}</strong> palabras
             </span>
             <span>
-              <strong className="text-slate-300 font-mono">{charCount}</strong> caracteres
+              <strong className="text-[var(--text-primary)] font-mono">{charCount}</strong> caracteres
             </span>
           </div>
 
-          <div className="flex items-center gap-4 text-slate-500">
+          <div className="flex items-center gap-4 text-[var(--text-muted)]">
             <span className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-slate-400" /> ~{readingTimeMinutes} min de lectura
+              <Clock className="w-3.5 h-3.5 text-[var(--text-secondary)]" /> ~{readingTimeMinutes} min de lectura
             </span>
             {typewriterMode && (
-              <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px]">
+              <span className="px-2 py-0.5 rounded bg-[var(--bg-surface-active)] text-[var(--text-primary)] border border-[var(--border)] text-ui-s">
                 Máquina de Escribir Activa
               </span>
             )}
